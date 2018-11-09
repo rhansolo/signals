@@ -6,7 +6,7 @@
 static void sighandler(int signo){
   if (signo == SIGINT){
     printf("\nI will be leaving now due to a SIGINT. TOodles!\n");
-    exit(2);
+    exit(02);
   }
   if (signo == SIGUSR1){
     printf("%d \n", getppid());
