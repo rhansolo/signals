@@ -2,11 +2,16 @@
 #include <stdlib.h>
 #include <signal.h>
 #include <unistd.h>
+#include <time.h>
+#include <fcntl.h>
 
 static void sighandler(int signo){
   if (signo == SIGINT){
-    printf("\nI will be leaving now due to a SIGINT. TOodles!\n");
-    exit(02);
+    int file = open("out.txt", O_WRONLY | O_TRUNC | O_CREAT, 0644);
+    char tmp[] = "Program ended due to SIGINT";
+    write(file,tmp,27);
+    close(file);
+    exit(2);
   }
   if (signo == SIGUSR1){
     printf("%d \n", getppid());
